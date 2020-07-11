@@ -1,3 +1,13 @@
+/*
+======================================
+; Title: Assignment 1.3
+; Author: Nicole Forke
+; Date: 10 July 2020
+; Modified By: Nicole Forke
+; Description: Hello-World Application
+======================================
+*/
+
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 
