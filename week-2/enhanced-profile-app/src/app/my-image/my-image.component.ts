@@ -1,3 +1,13 @@
+/*
+================================================
+; Title: Assignment 1.5
+; Author: Nicole Forke
+; Date: 18 July 2020
+; Modified By: Nicole Forke
+; Description: my-details-component
+================================================
+*/
+
 import { Component, OnInit } from '@angular/core';
 
 @Component({
