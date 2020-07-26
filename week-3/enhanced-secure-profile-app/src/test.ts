@@ -1,11 +1,11 @@
 // This file is required by karma.conf.js and loads recursively all the .spec and framework files
 /*
 ================================================
-; Title: Assignment 3.3
+; Title: Assignment 3.4
 ; Author: Nicole Forke
-; Date: 25 July 2020
+; Date: 26 July 2020
 ; Modified By: Nicole Forke
-; Description: test.ts file
+; Description: test file
 ================================================
 */
 import 'zone.js/dist/zone-testing';
