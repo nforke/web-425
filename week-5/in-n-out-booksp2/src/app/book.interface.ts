@@ -1,10 +1,10 @@
 /*
 ================================================================
-; Title: Assignment 5.2 - Navigation and Layout
+; Title: Assignment 5.3 - Data Types
 ; Author: Nicole Forke
 ; Date: 08 August 2020
 ; Modified By: Nicole Forke
-; Description: Book Interface Object
+; Description: Contact Component (contact page)
 ================================================================
 */
 
