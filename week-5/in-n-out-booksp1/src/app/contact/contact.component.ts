@@ -4,7 +4,7 @@
 ; Author: Nicole Forke
 ; Date: 08 August 2020
 ; Modified By: Nicole Forke
-; Description: Contact Component
+; Description: Contact Component (contact page)
 ================================================================
 */
 import { Component, OnInit } from '@angular/core';
