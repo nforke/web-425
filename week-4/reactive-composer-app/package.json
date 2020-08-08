@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "name": "reactive-composer-app",
+=======
+  "name": "reactive-composer-appn",
+>>>>>>> ddb51ec9ce3400f2920c3fc53809566d4126d08c
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
