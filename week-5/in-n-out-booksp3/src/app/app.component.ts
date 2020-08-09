@@ -1,6 +1,6 @@
 /*
 ================================================================
-; Title: Assignment 5.3 - Data Types
+; Title: Assignment 5.4 - Dialog
 ; Author: Nicole Forke
 ; Date: 08 August 2020
 ; Modified By: Nicole Forke
@@ -19,6 +19,6 @@ export class AppComponent {
   assignment: string;
 
   constructor() {
-    this.assignment="Assignment 5.3 - Data Tables"
+    this.assignment="Assignment 5.4 - Dialogs"
   }
 }
