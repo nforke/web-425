@@ -1,0 +1,47 @@
+<div fxFlex class="section">
+  <mat-card class='mat-elevation-z8'>
+    <mat-card-title>Services:</mat-card-title>
+
+    <mat-list>
+      <mat-list-item *ngFor="let service of serviceRepairForm.controls.serviceRepairOptions['controls']; let i = index">
+        <mat-checkbox formControlName="{{i}}"> {{ service[i].title }} {{ service[i].price | currency }}</mat-checkbox>
+      </mat-list-item>
+      <br /><br />
+      <hr>
+
+      <mat-list-item>
+        <mat-label>Parts:</mat-label>
+        <input type='number' [(ngModel)]='parts'>
+      </mat-list-item>
+
+      <mat-list-item>
+        <mat-label>Labor:</mat-label>
+        <input type='number' [(ngModel)]='labor'>
+      </mat-list-item>
+    </mat-list>
+
+    <button mat-button color='blue' (click)='onSubmit()'>Calculate</button>
+  </mat-card>
+</div>
+
+<mat-card>
+  <mat-card-title>Service</mat-card-title>
+  <br /><br />
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item *ngFor="let service of service"> ${{ service.title }}</mat-list-item>
+      <mat-list-item *ngFor="let service of service"> ${{ service.price }}</mat-list-item>
+    </mat-list>
+
+    <h2 fxFlex>Parts and Labor</h2>
+    <mat-list>
+      <mat-list-item>Parts: ${{ parts }}</mat-list-item>
+      <mat-list-item>Labor: ${{ labor }}</mat-list-item>
+
+      <h2 fxFlex>Total: ${{ total + parts + labor }}</h2>
+    </mat-list>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="blue" matDialogClose="confirm">Confirm Order</button>
+  </mat-card-actions>
+</mat-card>
