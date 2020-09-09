@@ -1,0 +1,23 @@
+<mat-dialog-content>
+  <h1>Invoice Summary</h1>
+  <mat-card class='mat-elevation-z8 invoice-card'>
+    <mat-card-content>
+      <h2>Date:</h2>
+      <p class='invoice-item'>{{today | date:'fullDate'}}</p>
+      <h2>Services:</h2>
+      <p class='invoice-item' *ngFor="let item of selectedItems">{{item.label}}</p>
+
+      <h2>Parts and Labor:</h2>
+      <p class='invoice-item'>Parts: ${{parts | number}}</p>
+      <p class='invoice-item'>Labor: ${{labor | number }}</p>
+
+      <h1>Total: ${{total + labor + parts | number }}</h1>
+    </mat-card-content>
+  </mat-card>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-raised-button color="primary" mat-dialog-close>Confirm</button>
+  <button mat-raised-button color="accent" mat-dialog-close>Cancel</button>
+</mat-dialog-actions>
+

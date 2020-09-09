@@ -2,15 +2,16 @@
 ================================================================
 ; Title: Bob's Computer Repair
 ; Author: Nicole Forke
-; Date: 15 August 2020
+; Date: 30 August 2020
 ; Modified By: Nicole Forke
 ; Description: Services Component
 ================================================================
 */
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IRepairService } from '../repair-service.interface';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormBuilder, FormArray, Validators } from '@angular/forms'
+import { FormGroup, FormBuilder, FormArray, FormControl, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { InvoiceDialogComponent } from '../invoice-dialog/invoice-dialog.component';
 
 @Component({
   selector: 'app-services',
@@ -18,40 +19,94 @@ import { FormBuilder, FormArray, Validators } from '@angular/forms'
   styleUrls: ['./services.component.scss']
 })
 export class ServicesComponent implements OnInit {
+  // variable to hold array
+  services: Array<IRepairService>;
+  selectedItems: Array<IRepairService>;
+  serviceForm: FormGroup;
 
+  parts: number;
+  labor: number;
   total: number;
-  parts = 0;
-  labor = 0;
 
-  service: Array<IRepairService> = [
-    {id: 101, title: "Password Reset", price: 39.99},
-    {id: 102, title: "Spyware Removal", price: 99.99},
-    {id: 103, title: "RAM Upgrade", price: 129.99},
-    {id: 104, title: "Software Installation", price: 49.99},
-    {id: 105, title: "Tune-up", price: 89.99},
-    {id: 106, title: "Keyboard Cleaning", price: 45.00},
-    {id: 107, title: "Disk Clean-up", price: 149.99}
-  ];
-  serviceRepairForm;
+  constructor(private fb: FormBuilder, private dialog: MatDialog) {
+   // array
+   this.services = [
+    {
+      id: 100,
+      title: "Password Reset",
+      price: 39.99,
+      label: "Password Reset - $39.99"
+    },
+    {
+      id: 101,
+      title: "Spyware Removal",
+      price: 99.99,
+      label: "Spyware Removal - $99.99"
+    },
+    {
+      id: 102,
+      title: "RAM Upgrade",
+      price: 129.99,
+      label: "RAM Upgrade - $129.99"
+    },
+    {
+      id: 103,
+      title: "Software Installation",
+      price: 49.99,
+      label: "Software Installation - $49.99"
+    },
+    {
+      id: 103,
+      title: "Tune-Up",
+      price: 89.99,
+      label: "Tune-Up - $89.99"
+    },
+    {
+      id: 104,
+      title: "Keyboard Cleaning",
+      price: 45.00,
+      label: "Keyboard Cleaning - $45.00"
+    },
+    {
+      id: 105,
+      title: "Disk Clean-Up",
+      price: 149.99,
+      label: "Disk Clean-Up - $149.99"
+    }
+  ]
+  }
 
-  constructor(private formBuilder: FormBuilder, public dialogRef: MatDialog) {
-
-    this.serviceRepairForm = this.formBuilder.group({
-      serviceRepairOptions: new FormArray([]),
-      parts: [null, Validators.compose([Validators.required])],
-      labor: [null, Validators.compose([Validators.required])]
-    });
-   }
+  // returns form array
+  get serviceFormArray(): FormArray {
+    return this.serviceForm.controls.serviceOptions as FormArray;
+  }
+  // dynamically adds for controls to the form array.
+  private addServiceCheckboxes(): void {
+    this.services.forEach(() => this.serviceFormArray.push(new FormControl(false)));
+  }
 
   ngOnInit(): void {
-    this.service = this.serviceRepairForm.getService();
+    // create reactive form
+    this.serviceForm = this.fb.group({
+      serviceOptions: new FormArray([]),
+      parts: ['null', Validators.compose([Validators.required])],
+      labor: ['null', Validators.compose([Validators.required])]
+    });
+
+    // add checkboxes
+    this.addServiceCheckboxes();
   }
 
   onSubmit() {
-    this.serviceRepairForm = this.serviceRepairForm.value.serviceRepairOptions
-    .map((checked, index) => checked ? this.service[index] : null)
-    .filter(v => v !== null); //filter out the null values;
-    this.serviceRepairForm.reset();
-  }
+    const dialogRef = this.dialog.open(InvoiceDialogComponent, {
+      width: '25%',
+      data: {selectedItems: this.selectedItems, parts: this.parts, labor: this.labor, total: this.total}
+    })
+    // loop over the form and build array of selected services
+    this.selectedItems = this.serviceForm.value.serviceOptions
+    .map((checked, index) => checked ? this.services[index] : null)
+    .filter(v => v !== null);
 
-}
+    console.log(this.selectedItems);
+    }
+  }

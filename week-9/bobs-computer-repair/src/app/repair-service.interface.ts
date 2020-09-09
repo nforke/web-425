@@ -11,4 +11,5 @@ export interface IRepairService {
   id: number;
   title: string;
   price: number;
+  label: string;
 }

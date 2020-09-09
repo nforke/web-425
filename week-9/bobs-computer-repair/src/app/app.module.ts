@@ -7,35 +7,33 @@
 ; Description: App Module
 ================================================================
 */
-// root module imports
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MatDialogModule, MatDialog, MatDialogRef } from '@angular/material/dialog';
 
-// app module imports
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-
-// component imports
 import { AboutComponent } from './about/about.component';
-import { ServicesComponent } from './services/services.component';
-
-// import Angular Material modules
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
-import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
+import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ServicesComponent } from './services/services.component'
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { InvoiceDialogComponent } from './invoice-dialog/invoice-dialog.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     AboutComponent,
     ServicesComponent,
+    InvoiceDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -51,10 +49,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatListModule,
     MatSelectModule,
     MatCheckboxModule,
-    MatDialog,
-    MatDialogRef
+    MatInputModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }
