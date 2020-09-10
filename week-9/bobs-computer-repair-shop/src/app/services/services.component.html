@@ -1,0 +1,49 @@
+<div fxLayout="column" fxLayoutGap = '20px'>
+  <h1 fxFlex style="text-align: center;">Services</h1>
+
+  <div fxFlex>
+    <mat-card style="width: 75%; margin: 0 auto;" class='mat-elevation-z8'>
+      <form [formGroup]="serviceForm" (ngSubmit)="onSubmit(); serviceForm.reset();">
+
+        <mat-card-content>
+          <div fxLayout="column" fxLayoutGap="10px">
+            <div fxFlex formArrayName="serviceOptions" *ngFor="let service of serviceForm.controls.serviceOptions['controls']; let i = index">
+              <mat-checkbox formControlName="{{i}}">
+              {{ services[i].title }}: {{ services[i].price }}
+              </mat-checkbox>
+            </div>
+          </div>
+        </mat-card-content>
+      </form>
+    </mat-card>
+  </div>
+
+  <div fxFlex>
+    <mat-card style="width:75%; margin: 0 auto;" class='mat-elevation-z8'>
+      <h1 fxFlex style="text-align: center;">Standard Fees</h1>
+
+      <div fxLayout="column">
+        <mat-list>
+
+          <mat-list>
+            <mat-list-item>
+              <mat-label>Parts:</mat-label>
+              <input type="number" [(ngModel)]='parts'>
+            </mat-list-item>
+
+            <mat-list-item>
+              <mat-label>Labor:</mat-label>
+              <input type="number" [(ngModel)]='labor'>
+            </mat-list-item>
+          </mat-list>
+
+          <h2 fxLayout="column" style="text-align: left;">Total: ${{total + parts + labor}}</h2>
+        </mat-list>
+
+        <mat-card-actions align="end">
+          <button mat-raised-button color='primary' (click)='onSubmit()'>Calculate</button>
+        </mat-card-actions>
+      </div>
+    </mat-card>
+  </div>
+</div>
